@@ -14,6 +14,7 @@ class Terrain
 	vector *colors;
 
 
+
 	float getHeight(float x, float y);
 	void setPoint(vector, float, float,float);
 	

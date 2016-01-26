@@ -42,21 +42,13 @@ int main()
 	Settings.antialiasingLevel = 2;  // Request 2 levels of antialiasing
 	sf::RenderWindow App(sf::VideoMode(width, height, 32), "SFML OpenGL", sf::Style::Close, Settings);
 	sf::Texture seatex;
-	//sf::Texture rocktex;
-	//sf::Texture snowtex;
+	sf::Texture rocktex;
+	sf::Texture snowtex;
 	//glEnable(GL_TEXTURE_2D);
 	
 	//seatex.loadFromFile("sea.jpg");
 
-	//if (!seatex.loadFromFile("sea.png")){
-	//	cout << "oh no" << endl;
-	//}
-	//if (!rocktex.loadFromFile("rock.png")){
-	//	cout << "oh no" << endl;
-	//}
-	//if (!snowtex.loadFromFile("snow.png")){
-	//	cout << "oh no" << endl;
-	//}
+
 
     // Create a clock for measuring time elapsed     
     sf::Clock Clock; 
@@ -79,7 +71,15 @@ int main()
     gluPerspective(90.f, (float)width/height, 1.f, 300.0f);//fov, aspect, zNear, zFar 
  
 
-
+	if (!seatex.loadFromFile("sea2.png")){
+		cout << "oh no" << endl;
+	}
+	if (!rocktex.loadFromFile("rock.png")){
+		cout << "oh no" << endl;
+	}
+	if (!snowtex.loadFromFile("snow.png")){
+		cout << "oh no" << endl;
+	}
 
 	//load & bind the shader
 	sf::Shader shader;
@@ -88,7 +88,7 @@ int main()
 	if(!shader.loadFromFile("vertex.glsl","fragment.glsl")){
         exit(1);
     }
-	sf::Shader::bind(&shader);
+
 
 
 	//Create our Terrain
@@ -122,10 +122,11 @@ int main()
         // Clear color and depth buffer 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
+		sf::Shader::bind(&shader);
 		
-		//shader.setParameter("Seatex", seatex);
-		//shader.setParameter("Rocktex", rocktex);
-		//shader.setParameter("Snowtex", snowtex);
+		shader.setParameter("Seatex", seatex);
+		shader.setParameter("Rocktex", rocktex);
+		shader.setParameter("Snowtex", snowtex);
         // Apply some transformations 
         //initialise the worldview matrix
 		glMatrixMode(GL_MODELVIEW); 
@@ -150,6 +151,7 @@ int main()
         // Finally, display rendered frame on screen 
         App.display(); 
     } 
+
    
     return EXIT_SUCCESS; 
 }
