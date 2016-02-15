@@ -99,12 +99,15 @@ public:
     void TurnUpDown(int dir){ //Dir=+1=>Up, dir=-1=> Down
         //TODO
 
-		forward.y = forward.y*cos(roationSpeed*dir) - forward.z*sin(roationSpeed*dir);
 		forward.z = forward.y*sin(roationSpeed*dir) + forward.z*cos(roationSpeed*dir);
+		forward.y = forward.y*cos(roationSpeed*dir) - forward.z*sin(roationSpeed*dir);
+		
+
 
     }
  
 	void ViewingTransform(){
+	
 		gluLookAt(position.x, position.y, position.z,// camera position
 			forward.x+position.x, forward.y+position.y, forward.z+position.z, //look at this point //TODO: BUG here!! what is it ??
 			0, 1, 0); //camera up
