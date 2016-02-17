@@ -104,7 +104,11 @@ public:
 
 
     }
- 
+	void Reset()
+	{
+		position =aiVector3D(0, 10, -30);
+	
+	}
 	void ViewingTransform(){
 	
 		gluLookAt(position.x, position.y, position.z,// camera position

@@ -90,7 +90,7 @@ int main()
     gluPerspective(90.f, (float)width/height, 1.f, 300.0f);//fov, aspect, zNear, zFar 
  
 	sf::Texture grassTex, waterTex, snowTex;
-	std::string image = "grass2.png";
+	std::string image = "grass.png";
 	if (!grassTex.loadFromFile(image))
 	{
 		std::cout << "Could not load" << image;
@@ -150,6 +150,10 @@ int main()
 				ortographic = !ortographic;
 
 			}
+			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::R)){
+				camera.Reset();
+
+			}
              
 			//update the camera
 			camera.Update(Event);
@@ -176,7 +180,6 @@ int main()
 		glLoadIdentity();
 		if (ortographic == true)
 		{
-
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
 			glOrtho(-30, 30, -40, 30, 300, -300);
@@ -186,7 +189,7 @@ int main()
 		}
 		else
 		{
-
+		
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
 			gluPerspective(90.f, (float)width / height, 1.f, 300.0f);//fov, aspect, zNear, zFar 

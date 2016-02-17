@@ -7,16 +7,16 @@ void main()
 {
 	vec4 color;
 	vec4 specularlight = vec4(0,0,0,0);
-	if(height < 0.05f)
+	if(height < 0.1f)
 	{
 		//water
 		color = texture2D(waterTex,gl_TexCoord[0].st);
 		specularlight = specular;
 	}
-	else if(height < 0.1f){
+	else if(height < 0.15f){
 		//water, grass
 		//the mix area of water and grass
-		float localheight = height - 0.05f; 
+		float localheight = height - 0.1f; 
 		float percent = localheight / 0.05f;
 		vec4 c1 = texture2D(waterTex,gl_TexCoord[0].st);
 		vec4 c2 = texture2D(grassTex,gl_TexCoord[0].st);
