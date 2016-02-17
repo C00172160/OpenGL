@@ -99,8 +99,7 @@ public:
     void TurnUpDown(int dir){ //Dir=+1=>Up, dir=-1=> Down
         //TODO
 
-		forward.z = forward.y*sin(roationSpeed*dir) + forward.z*cos(roationSpeed*dir);
-		forward.y = forward.y*cos(roationSpeed*dir) - forward.z*sin(roationSpeed*dir);
+		forward.y += tan(roationSpeed * dir);
 		
 
 

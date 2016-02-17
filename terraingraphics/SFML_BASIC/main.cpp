@@ -66,10 +66,12 @@ int main()
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	//glEnable(GL_COLOR_MATERIAL);
-	GLfloat light_color[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_position[] = { 5.0, 2.6, 0.0, 0.0 };
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_color); // set color of diffuse component
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light_color); // set color of specular component
+	GLfloat ambientLight_color[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat diffuseLight_color[] = { 0.5, 0.5, 0.5, 0.5 };
+	GLfloat light_position[] = { 8.0, 20.0, 0.0, 0.0 };
+	
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight_color); // set color of diffuse component
+	glLightfv(GL_LIGHT0, GL_SPECULAR, ambientLight_color); // set color of specular component
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);   // set position
 	///////////////////////////setting material
 	GLfloat materialAmbDiff[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // create an array of RGBA values
@@ -78,7 +80,7 @@ int main()
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, materialAmbDiff); // set the diffuse & ambient reflection colour for the front of faces
 
 	GLfloat materialSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // create an array of RGBA values (White)
-	GLfloat materialShininess[] = { 128.0f }; // select value between 0-128, 128=shiniest
+	GLfloat materialShininess[] = { 20.0f }; // select value between 0-128, 128=shiniest
 
 
 	glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular); // set the colour of specular reflection
@@ -186,16 +188,18 @@ int main()
 		//TODO:probably should remove this in final
 		static float ang=0.0;
 		ang+=0.01f;
-		glRotatef(ang*2,0,1,0);//spin about y-axis
+		//glRotatef(ang*2,0,1,0);//spin about y-axis
 		
 		
 		//sf::Texture::bind(&grassTex);
 		//sf::Texture::bind(&snowTex);
+		GLfloat light_position[] = { 8.0, 20.0, 0.0, 0.0 };
+		glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 		sf::Shader::bind(&shader);
 		
 		//draw the world
 		terrain.Draw();
-
+	
 		   
         // Finally, display rendered frame on screen 
         App.display(); 
