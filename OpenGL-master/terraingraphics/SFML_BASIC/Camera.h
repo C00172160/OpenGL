@@ -18,11 +18,11 @@ public:
 	aiVector3D lookat;
  
     float forwardSpeed;
-    float roationSpeed;
+    float rotationSpeed;
 
 	float angle = 0.1f;
      
-    Camera():forwardSpeed(0.5f),roationSpeed(0.1f){}
+	Camera() :forwardSpeed(0.5f), rotationSpeed(0.1f){}
  
     void Init(aiVector3D& p=zero, aiVector3D& f=zaxis, aiVector3D& u=yaxis,aiVector3D& r=xaxis){
         position=p;
@@ -92,14 +92,14 @@ public:
     void TurnRightLeft(int dir){ //Dir=+1=>Right, dir=-1=> Left
         //TODO
 
-		forward.z = forward.z*cos(roationSpeed*dir) - forward.x*sin(roationSpeed*dir);
-		forward.x = forward.z*sin(roationSpeed*dir) + forward.x*cos(roationSpeed*dir);
+		forward.z = forward.z*cos(rotationSpeed*dir) - forward.x*sin(rotationSpeed*dir);
+		forward.x = forward.z*sin(rotationSpeed*dir) + forward.x*cos(rotationSpeed*dir);
 	}
          
     void TurnUpDown(int dir){ //Dir=+1=>Up, dir=-1=> Down
         //TODO
 
-		forward.y += tan(roationSpeed * dir);
+		forward.y -= tan(rotationSpeed * dir);
 		
 
 

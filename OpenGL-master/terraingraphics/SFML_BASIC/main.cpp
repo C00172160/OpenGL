@@ -1,4 +1,5 @@
-//////////////////////////////////////////////////////////// 
+
+/////////////////////////////////////////////////////////// 
 // Headers 
 //////////////////////////////////////////////////////////// 
 #include "stdafx.h" 
@@ -171,14 +172,30 @@ int main()
    
         // Apply some transformations 
         //initialise the worldview matrix
-		glMatrixMode(GL_MODELVIEW); 
-        glLoadIdentity(); 
-
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 		if (ortographic == true)
 		{
-			glOrtho(-10, 10, -10, 10, 300, -300);
-		}
 
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			glOrtho(-30, 30, -40, 30, 300, -300);
+			glMatrixMode(GL_MODELVIEW);
+		
+
+		}
+		else
+		{
+
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			gluPerspective(90.f, (float)width / height, 1.f, 300.0f);//fov, aspect, zNear, zFar 
+			glMatrixMode(GL_MODELVIEW);
+		}
+	
+
+	
+	
 
 		//get the viewing transform from the camera
 		camera.ViewingTransform();

@@ -23,7 +23,7 @@ Terrain::Terrain(void)
 }
 
 void Terrain::loadMap() {
-	map.loadFromFile("c.bmp");
+	map.loadFromFile("HeightMap.bmp");
 }
 
 Terrain::~Terrain(void)
