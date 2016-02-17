@@ -73,8 +73,12 @@ public:
 	}
     void MoveLeftRight(int dir){ //Dir=+1=>Right, dir=-1=> Left
             //TODO
+
+
 		position += (leftRight*(forwardSpeed*dir));
 		lookat += (leftRight*(forwardSpeed*dir));
+
+
     }
 
 	void MoveUpDown(int dir){ //Dir=+1=>Right, dir=-1=> Left
@@ -91,13 +95,18 @@ public:
  
     void TurnRightLeft(int dir){ //Dir=+1=>Right, dir=-1=> Left
         //TODO
+	
 
 		forward.z = forward.z*cos(rotationSpeed*dir) - forward.x*sin(rotationSpeed*dir);
 		forward.x = forward.z*sin(rotationSpeed*dir) + forward.x*cos(rotationSpeed*dir);
+
+		leftRight.z = leftRight.z*cos(rotationSpeed*dir) - leftRight.x*sin(rotationSpeed*dir);
+		leftRight.x = leftRight.z*sin(rotationSpeed*dir) + leftRight.x*cos(rotationSpeed*dir);
 	}
          
     void TurnUpDown(int dir){ //Dir=+1=>Up, dir=-1=> Down
         //TODO
+
 
 		forward.y -= tan(rotationSpeed * dir);
 		
